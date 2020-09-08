@@ -5,8 +5,9 @@ import moment from 'moment';
 // Write TypeScript code!
 const appDiv: HTMLElement = document.getElementById('app');
 appDiv.innerHTML = `<h1>TypeScript Starter</h1>`;
+appDiv.innerHTML = `<object id="myObject" width="250" height="200" data=""></object>`;
 
-var obj1 = [{
+var tbl = [{
   "name": "pam.fairbairn@canstar.com.au/UAT_HL_Res_Fxd3",
   "displayName": "UAT_HL_Res_Fxd3",
   "repositoryUrl": "mortgages_market_changes_rates/MarketChangesRates/pam.fairbairn@canstar.com.au/UAT_HL_Res_Fxd3"
@@ -22,7 +23,7 @@ var obj1 = [{
   "repositoryUrl": "mortgages_market_changes_rates/MarketChangesRates/pam.fairbairn@canstar.com.au/UAT_HL_Res_Fxd5"
 }];
 
-var obj2 = [{	
+var cnstr = [{	
   "schedule_id": "1",
   "user_id": "1271",
   "report_name": "mortgages_market_changes_rates/MarketChangesRates/pam.fairbairn@canstar.com.au/UAT_HL_Res_Fxd3",
@@ -44,7 +45,7 @@ var obj2 = [{
 }];
 
 function mergeElements(dest, src) { 
-  for(var key in src) { 
+  for(const key in src) { 
       dest[key] = src[key]; 
   } 
   return dest; 
@@ -72,5 +73,18 @@ function merged(compKeyDest, compKeySrc, dest, src) {
   return merged; 
 }
 
-console.log('Test', merged('repositoryUrl', 'report_name', obj1, obj2)); 
+// console.log('Test', merged('repositoryUrl', 'report_name', tbl, cnstr)); 
 
+const customSchedule: any[] =  merged('repositoryUrl', 'report_name', tbl, cnstr); 
+let parsed: string = "";
+for (let i: number = 0; i < customSchedule.length; i++) {
+  const myobj: [] = customSchedule[i];
+  for (const property in myobj) {
+    parsed += "<br/>" + property + ": " + myobj[property] + "\n";
+    alert(property);
+    alert(myobj[property]);
+  }
+  parsed += `<p/>`;
+}            
+        
+appDiv.innerHTML = parsed;
