@@ -81,7 +81,7 @@ for (let i: number = 0; i < customSchedule.length; i++) {
   const myobj: [] = customSchedule[i];
   for (const property in myobj) {
     parsed += "<br/>" + property + ": " + myobj[property] + "\n";
-    alert(property);
+    // alert(property);
     // alert(myobj[property]);
   }
   parsed += `<p/>`;
