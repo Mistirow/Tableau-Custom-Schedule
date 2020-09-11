@@ -1,6 +1,8 @@
 // Import stylesheets
 import './style.css';
 import moment from 'moment';
+import { CustomViews, CustomView } from './interfaces/CustomView';
+import { CustomViews } from './interfaces/CustomView';
 
 // Write TypeScript code!
 const appDiv: HTMLElement = document.getElementById('app');
@@ -9,18 +11,18 @@ appDiv.innerHTML = `<object id="myObject" width="250" height="200" data=""></obj
 
 var tbl = [{
   "name": "pam.fairbairn@canstar.com.au/UAT_HL_Res_Fxd3",
-  "displayName": "UAT_HL_Res_Fxd3",
-  "repositoryUrl": "mortgages_market_changes_rates/MarketChangesRates/pam.fairbairn@canstar.com.au/UAT_HL_Res_Fxd3"
+  "display_name": "UAT_HL_Res_Fxd3",
+  "repository_url": "mortgages_market_changes_rates/MarketChangesRates/pam.fairbairn@canstar.com.au/UAT_HL_Res_Fxd3"
 },
 {
   "name": "pam.fairbairn@canstar.com.au/UAT_HL_Res_Fxd4",
-  "displayName": "UAT_HL_Res_Fxd4",
-  "repositoryUrl": "mortgages_market_changes_rates/MarketChangesRates/pam.fairbairn@canstar.com.au/UAT_HL_Res_Fxd4"
+  "display_name": "UAT_HL_Res_Fxd4",
+  "repository_url": "mortgages_market_changes_rates/MarketChangesRates/pam.fairbairn@canstar.com.au/UAT_HL_Res_Fxd4"
 },
 {
   "name": "pam.fairbairn@canstar.com.au/UAT_HL_Res_Fxd5",
   "displayName": "UAT_HL_Res_Fxd5",
-  "repositoryUrl": "mortgages_market_changes_rates/MarketChangesRates/pam.fairbairn@canstar.com.au/UAT_HL_Res_Fxd5"
+  "repository_url": "mortgages_market_changes_rates/MarketChangesRates/pam.fairbairn@canstar.com.au/UAT_HL_Res_Fxd5"
 }];
 
 var cnstr = [{	
@@ -52,7 +54,7 @@ function mergeElements(dest, src) {
 } 
 
 function merged(compKeyDest, compKeySrc, dest, src) { 
-  const merged: any[] = [];
+  const merged: CustomViews[] = [];
 
   dest.forEach((destEl, destInx) => {
     const cnt: number = merged.length;
@@ -74,8 +76,9 @@ function merged(compKeyDest, compKeySrc, dest, src) {
 }
 
 // console.log('Test', merged('repositoryUrl', 'report_name', tbl, cnstr)); 
-
-const customSchedule: any[] =  merged('repositoryUrl', 'report_name', tbl, cnstr); 
+const customViews: CustomViews[] = tbl;
+console.log(customViews);
+const customSchedule: any[] =  merged('repository_url', 'report_name', tbl, cnstr); 
 let parsed: string = "";
 for (let i: number = 0; i < customSchedule.length; i++) {
   const myobj: [] = customSchedule[i];
