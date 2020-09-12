@@ -2,7 +2,7 @@
 import './style.css';
 import moment from 'moment';
 import { CustomViews, CustomView } from './interfaces/CustomView';
-import { CustomViews } from './interfaces/CustomView';
+
 
 // Write TypeScript code!
 const appDiv: HTMLElement = document.getElementById('app');
@@ -54,7 +54,7 @@ function mergeElements(dest, src) {
 } 
 
 function merged(compKeyDest, compKeySrc, dest, src) { 
-  const merged: CustomViews[] = [];
+  const merged: any[] = [];
 
   dest.forEach((destEl, destInx) => {
     const cnt: number = merged.length;
@@ -76,8 +76,7 @@ function merged(compKeyDest, compKeySrc, dest, src) {
 }
 
 // console.log('Test', merged('repositoryUrl', 'report_name', tbl, cnstr)); 
-const customViews: CustomViews[] = tbl;
-console.log(customViews);
+// const customViews: CustomView[] = tbl; console.log(customViews);
 const customSchedule: any[] =  merged('repository_url', 'report_name', tbl, cnstr); 
 let parsed: string = "";
 for (let i: number = 0; i < customSchedule.length; i++) {
@@ -85,7 +84,7 @@ for (let i: number = 0; i < customSchedule.length; i++) {
   for (const property in myobj) {
     parsed += "<br/>" + property + ": " + myobj[property] + "\n";
     // alert(property);
-    // alert(myobj[property]);
+    alert(myobj[property]);
   }
   parsed += `<p/>`;
 }            
