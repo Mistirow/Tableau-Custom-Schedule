@@ -21,7 +21,7 @@ var tbl = [{
 },
 {
   "name": "pam.fairbairn@canstar.com.au/UAT_HL_Res_Fxd5",
-  "displayName": "UAT_HL_Res_Fxd5",
+  "display_name": "UAT_HL_Res_Fxd5",
   "repository_url": "mortgages_market_changes_rates/MarketChangesRates/pam.fairbairn@canstar.com.au/UAT_HL_Res_Fxd5"
 }];
 
@@ -54,14 +54,15 @@ function mergeElements(dest, src) {
 } 
 
 function merged(compKeyDest, compKeySrc, dest, src) { 
-  const merged: any[] = [];
+  const merged: CustomView[] = [];
 
   dest.forEach((destEl, destInx) => {
     const cnt: number = merged.length;
     //Attempt to find a match from the second input
+    console.log('Check 1', destEl['display_name']);
     src.forEach((srcEl, srcInx) => {      
       if (destEl[compKeyDest] === srcEl[compKeySrc]) {        
-        const combined: {} = mergeElements(destEl, srcEl);
+        const combined: CustomView = mergeElements(destEl, srcEl);
         merged.push(combined);
       } 
     });
@@ -76,8 +77,9 @@ function merged(compKeyDest, compKeySrc, dest, src) {
 }
 
 // console.log('Test', merged('repositoryUrl', 'report_name', tbl, cnstr)); 
-// const customViews: CustomView[] = tbl; console.log(customViews);
-const customSchedule: any[] =  merged('repository_url', 'report_name', tbl, cnstr); 
+const customViews: CustomView[] = tbl; 
+console.log('Check 2', customViews);
+const customSchedule: any[] =  merged('repository_url', 'report_name', customViews, cnstr); 
 let parsed: string = "";
 for (let i: number = 0; i < customSchedule.length; i++) {
   const myobj: [] = customSchedule[i];
